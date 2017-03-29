@@ -1,6 +1,11 @@
 package com.bdyshare.adt;
 
-
+/**
+ * ÆÕÍ¨¶þ²æËÑË÷Ê÷
+ * @author hank
+ *
+ * @param <T>
+ */
 public class BSTree<T extends Comparable<? super T>> {
 	
 	private Node<T> root;

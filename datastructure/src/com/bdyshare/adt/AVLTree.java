@@ -1,5 +1,10 @@
 package com.bdyshare.adt;
-
+/**
+ * 自平衡的二叉搜索树
+ * @author hank
+ *
+ * @param <T>
+ */
 public class AVLTree<T extends Comparable<? super T>> {
 
 	private Node<T> root;
@@ -105,7 +110,7 @@ public class AVLTree<T extends Comparable<? super T>> {
 		if(node == null) {
 			return node;
 		}
-		if(height(node.left)-height(node.right) > ALLOW_IMBALANCE) {
+		if(height(node.left) - height(node.right) > ALLOW_IMBALANCE) {
 			if(height(node.left.left) >= height(node.left.right)) {
 				node = rotateWithLeftChild(node);
 			} else {
