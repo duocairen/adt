@@ -1,7 +1,7 @@
 package com.bdyshare.adt;
 
 /**
- * ÆÕÍ¨¶ş²æËÑË÷Ê÷
+ * a common binary search tree
  * @author hank
  *
  * @param <T>

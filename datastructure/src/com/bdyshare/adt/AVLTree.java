@@ -1,6 +1,6 @@
 package com.bdyshare.adt;
 /**
- * 自平衡的二叉搜索树
+ * a binary search tree with self balance
  * @author hank
  *
  * @param <T>
