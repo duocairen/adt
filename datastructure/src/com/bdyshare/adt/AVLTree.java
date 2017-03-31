@@ -111,6 +111,8 @@ public class AVLTree<T extends Comparable<? super T>> {
 			return node;
 		}
 		if(height(node.left) - height(node.right) > ALLOW_IMBALANCE) {
+			//because the height of node.left is higher than node.right
+			//so we are sure that node.left is not null
 			if(height(node.left.left) >= height(node.left.right)) {
 				node = rotateWithLeftChild(node);
 			} else {

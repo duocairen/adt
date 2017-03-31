@@ -1,6 +1,6 @@
 package com.bdyshare.adt;
 /**
- * a realization of heap
+ * a simple realization of priority queue
  * @author huangbin
  *
  * @param <T>
