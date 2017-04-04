@@ -37,7 +37,7 @@ public class BinaryHeap<T extends Comparable<? super T>> {
 		if(currentSize == array.length-1) {
 			enlargeArray(array.length * 2);
 		}
-		int hole = ++ currentSize;
+		int hole = ++currentSize;
 		for(array[0] = ele; ele.compareTo(array[hole/2])<0; hole = hole/2) {
 			array[hole] = array[hole/2];
 		}
@@ -71,7 +71,7 @@ public class BinaryHeap<T extends Comparable<? super T>> {
 	
 	
 	private void percolateDown(int hole) {
-		int child = 0;
+		int child;
 		T tmp = array[hole];
 		for( ; hole * 2 <= currentSize; hole = child) {
 			child = hole * 2;

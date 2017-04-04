@@ -125,6 +125,7 @@ public class AVLTree<T extends Comparable<? super T>> {
 				node = doubleWithRightChild(node);
 			}
 		}
+		// the height of every node is set here
 		node.height = Math.max(height(node.left), height(node.right)) + 1;
 		return node;
 	}
@@ -136,6 +137,7 @@ public class AVLTree<T extends Comparable<? super T>> {
 		Node<T> newRoot = node.left;
 		node.left = newRoot.right;
 		newRoot.right = node;
+		// remember to update the height of node and the new root
 		node.height = Math.max(height(node.left), height(node.right)) + 1;
 		newRoot.height = Math.max(height(newRoot.left), height(newRoot.right)) + 1;
 		return newRoot;

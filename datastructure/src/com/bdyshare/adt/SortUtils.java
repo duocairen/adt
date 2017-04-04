@@ -2,9 +2,10 @@ package com.bdyshare.adt;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.TreeMap;
 
 /**
- * a simple util for sorting, including bubble sorting, insertion sorting, shell sorting, 
+ * a simple util for sorting, including bubble sorting, insertion sorting, shell sorting, merge sorting, quick sorting and so on...
  * @author huangbin
  *
  */
@@ -35,7 +36,10 @@ public class SortUtils {
 	 */
 	public static <T extends Comparable<? super T>> void insertionSort(T[] array) {
 		checkArrayLength(array);
-		for (int i = 1; i < array.length; i++) {
+		insertionSort(array, 0, array.length-1);
+	}
+	private static <T extends Comparable<? super T>> void insertionSort(T[] array, int left, int right) {
+		for (int i = left+1; i <=right; i++) {
 			int j;
 			T current = array[i];
 			for (j = i; j > 0 && current.compareTo(array[j - 1]) < 0; j--) {
@@ -44,7 +48,6 @@ public class SortUtils {
 			array[j] = current;
 		}
 	}
-	
 	
 	
 	/**
@@ -87,6 +90,7 @@ public class SortUtils {
 		int child;
 		for (tmp = array[h]; leftChild(h) < n; h = child) {
 			child = leftChild(h);
+			//as the child is already the left child, so here we judge child != n-1
 			if (child != n-1
 					&& array[child].compareTo(array[child + 1]) < 0) {
 				child++;
@@ -161,10 +165,67 @@ public class SortUtils {
 	
 	
 	
+	/**
+	 * quick sort
+	 * @param array
+	 */
+	public static <T extends Comparable<? super T>> void quickSort(T[] array) {
+		checkArrayLength(array);
+		quickSort(array, 0, array.length-1);
+	}
 	
+	private static final int CUTOFF = 5;
+	private static <T extends Comparable<? super T>> void quickSort(T[] a, int left, int right) {
+		if(left+CUTOFF <= right) {
+			T pivot = decidePivot(a, left, right);
+			int i = left;
+			int j = right-1;
+			while(true) {
+				while(a[++i].compareTo(pivot) < 0) {}
+				while(a[--j].compareTo(pivot) > 0) {}
+				if(i < j) {
+					swapReference(a, i, j);
+				} else {
+					break;
+				}
+			}
+			swapReference(a, i, right-1);
+			
+			quickSort(a, left, i-1);
+			quickSort(a, i+1, right);
+		} else {
+			insertSort(a, left, right);
+		}
+	}
+	private static <T extends Comparable<? super T>> void insertSort(T[] a, int left, int right) {
+		for(int i= left+1; i<= right; i++) {
+			T tmp;
+			int j =i;
+			for(tmp = a[i]; j>left; j--) {
+				if(tmp.compareTo(a[j-1]) < 0) {
+					a[j] = a[j-1];
+				} else {
+					break;
+				}
+			}
+			a[j] = tmp;
+		}
+	}
 	
-	
-	
+	private static <T extends Comparable<? super T>> T decidePivot(T[] a, int left, int right) {
+		int center = (left+right)/2;
+		if(a[center].compareTo(a[left]) < 0) {
+			swapReference(a, left, center);
+		}
+		if(a[right].compareTo(a[left]) < 0) {
+			swapReference(a, left, right);
+		}
+		if(a[right].compareTo(a[center]) < 0) {
+			swapReference(a, right, center);
+		}
+		swapReference(a, center, right-1);
+		return a[right-1];
+	}
 	
 	
 	
@@ -201,16 +262,17 @@ public class SortUtils {
 	
 	
 	public static void main(String[] args) {
-		Integer[] array = new Integer[20];
+		Integer[] array = new Integer[30];
 		Random rand = new Random();
-		for(int i=0; i< 20; i++) {
+		for(int i=0; i< 30; i++) {
 			array[i] = rand.nextInt(10000);
 		}
 		System.out.println(Arrays.toString(array));
 		//SortUtils.bubbleSort(array);
 		//SortUtils.insertionSort(array);
 		//SortUtils.shellSort(array);
-		SortUtils.mergeSort(array);
+		//SortUtils.mergeSort(array);
+		SortUtils.quickSort(array);
 		System.out.println(Arrays.toString(array));
 	}
 	
