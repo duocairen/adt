@@ -25,6 +25,7 @@ public class BSTree<T extends Comparable<? super T>> {
 		if(ele == null) {
 			return node;
 		}
+		//the end condition of recursive
 		if(node == null) {
 			return new Node<T>(ele);
 		}
@@ -34,7 +35,7 @@ public class BSTree<T extends Comparable<? super T>> {
 		} else if(comp < 0) {
 			node.left = insert(ele, node.left);
 		} else {
-			//duplicate
+			//duplicate, do nothing
 		}
 		return node;
 	}

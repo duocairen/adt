@@ -5,7 +5,8 @@ import java.util.Random;
 import java.util.TreeMap;
 
 /**
- * a simple util for sorting, including bubble sorting, insertion sorting, shell sorting, merge sorting, quick sorting and so on...
+ * a simple util for sorting, including bubble sorting, 
+ * insertion sorting, shell sorting, merge sorting, quick sorting and so on...
  * @author huangbin
  *
  */
@@ -88,9 +89,9 @@ public class SortUtils {
 			T[] array, int h, int n) {
 		T tmp;
 		int child;
+		//n is not included
 		for (tmp = array[h]; leftChild(h) < n; h = child) {
 			child = leftChild(h);
-			//as the child is already the left child, so here we judge child != n-1
 			if (child != n-1
 					&& array[child].compareTo(array[child + 1]) < 0) {
 				child++;
