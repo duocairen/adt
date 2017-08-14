@@ -88,6 +88,7 @@ public class BinaryHeap<T extends Comparable<? super T>> {
 	}
 	
 	private void buildHeap() {
+		//pay attention to the reason of percolate down from half of size
 		for(int i= currentSize/2; i>0; i--) {
 			percolateDown(i);
 		}
